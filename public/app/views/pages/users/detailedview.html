@@ -36,7 +36,7 @@
 			<div class="single-page">
 							<div class="single-page-artical">
 								<div class="artical-content">                                     
-									<img src="assets/img/latest-post-img1.jpg" title="banner1"> 		  						 
+									<img src="{{posts.file_name}}" title="banner1"> 		  						 
 		  						 <div class="clear"> </div>
                                    <div class="col-md-offset-8">      
                                     <span style="text-align: right">Posted by:</span> <span style="color: #71767c; text-align: right">{{posts.author}}</span>&emsp;<span>Posted on:</span> <span style="color: #71767c">{{posts.time | date: yyyy/MM/dd }}</span>                                   
@@ -65,10 +65,10 @@
 						</div>
 					</div>
 					<div>
-						<button class="btn btn-primary" ng-click="pageSize = 400" ng-show="pageSize < 6">View All comments <i class="fa 	fa-angle-double-down faa-float animated" aria-hidden="true"></i></button>
+						<button class="btn btn-primary" ng-click="pageSize=post.comments.length" ng-hide="post.comments.length<=pageSize || pageSize==post.comments.length">View All comments <i class="fa 	fa-angle-double-down faa-float animated" aria-hidden="true"></i></button>
 					</div>
 					<div>
-						<button class="btn btn-info" ng-click="pageSize = 5" ng-show="pageSize > 5">Recent comments <i class="fa fa-angle-double-up faa-float animated" aria-hidden="true"></i></button>
+						<button class="btn btn-info" ng-click="pageSize = 5" ng-hide="post.comments.length==0 || pageSize==5">Recent comments <i class="fa fa-angle-double-up faa-float animated" aria-hidden="true"></i></button>
 					</div>
 					<!-- <div ng-repeat="comment in post.comments | orderBy:'comment.date':true | startFrom:currentPage*pageSize | limitTo:pageSize">
 					    <div class="media">

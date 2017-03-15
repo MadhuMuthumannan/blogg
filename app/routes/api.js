@@ -180,7 +180,7 @@ module.exports = function(app,express){
 
 
 		apiRouter.route('/blogPost')
-		.post(function(req,res){
+		.post(function(req,res){		
 				var post =new Post();
 				post.title=req.body.title;
 				post.body=req.body.body;
@@ -296,16 +296,16 @@ module.exports = function(app,express){
  		})
 
 		 .put(function(req,res){
+		 	console.log("put function called at api part");
  			Post.findById(req.params.post_id,function(err,post){
 				if(err) res.send(err);
-				console.log(req.body.title)
-				console.log(req.body.body)
-				console.log(req.body.postedBy)
+				console.log(">>=========>")
+				console.log(req.body);
 
 				if(req.body.title) post.title =req.body.title;
 				if(req.body.body) post.body=req.body.body;
-				if(req.body.postedBy) post.postedBy=req.body.postedBy;
-
+				if(req.body.author) post.author=req.body.author;
+				if(req.body.file_name) post.file_name=req.body.file_name;
 				post.save(function(err){
 					if(err) res.send(err);
 					res.json({message:'post Updated'});

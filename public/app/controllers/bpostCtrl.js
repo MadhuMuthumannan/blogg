@@ -2,9 +2,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 		
     	.controller('createController',function(Post, $scope, Upload, $location){
 			var vm=this;
-		      $scope.tagline = "Hello!";
 		      $scope.uploadedFileName = "";
-		      vm.type='create';
 
 		      vm.savePost=function(){	
 							console.log("save post function called");
@@ -69,7 +67,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 			$scope.comment={};
 			$scope.posts.comments = {};
 			$scope.currentPage = 0;
-			$scope.pageSize = 4;
+			$scope.pageSize = 5;
 			$scope.numberOfPages=function(){
 				return Math.ceil($scope.post.comments.length/$scope.pageSize);                
 			}
@@ -181,12 +179,13 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 			var vm=this;	
 			$scope.posts={};
 			$scope.type='edit';
+			$scope.uploadedFileName = "";
 			Post.getPost($routeParams.post_id)
 					.success(function(data){
 						$scope.posts=data;
+						console.log($scope.posts);
 
-
-					$scope.savePost=function(){
+					vm.savePost=function(){
 						console.log('save post function called');					
 					Post.update($routeParams.post_id,$scope.posts)
 						.success(function(data){							
@@ -196,6 +195,44 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 
 
 					});
+
+			$scope.upload = function(file_name) {
+				console.log(file_name);
+				console.log("upload function called at controller part");
+		      	if(file_name) {
+		      		console.log(file_name);
+		      		Upload.upload({
+                    url: 'api/upload', //webAPI exposed to upload the file
+                    data:{file:file_name} //pass file as data, should be user ng-model
+                    }).then(function (resp) { //upload function returns a promise
+		                if(resp.data.error_code === 0){ //validate success
+		                	console.log(resp.data.filename);
+		                	$scope.posts.file_name = 'uploads/' + resp.data.filename;
+		                	vm.savePost();
+		                	// console.log(resp.data.filename);
+		                	console.log($scope.uploadedFileName);	                	
+		                    console.log('Success ' + resp.data.filename + ' uploaded. Response: ');
+		                } 
+		                else {
+		                    console.log('an error occured');
+		                }
+		            }, function (resp) { //catch error
+		                console.log('Error status: ' + resp.status);
+		                console.log('Error status: ' + resp.status);
+		            }, function (evt) { 
+		                console.log(evt);
+		                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+		                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+		                $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+		            });
+	            }
+
+		            else{
+		            	$scope.posts.file_name = "uploads/no_image.jpg";
+		            	vm.savePost();
+		            }
+		        };				
+
 
 					
 
