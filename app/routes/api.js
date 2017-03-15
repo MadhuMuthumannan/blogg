@@ -6,10 +6,32 @@ var config = require('../../config');
 var superSecret = config.secret;
 var multer = require('multer');
 
+
+
 module.exports = function(app,express){
 	var apiRouter = express.Router();
 	/*var sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/empod_db');*/
 	//route for authenticating users
+
+
+	apiRouter.post('/userss',function(req,res){
+				console.log(req.body)
+				var user =new User();
+				user.name=req.body.name;
+				user.username=req.body.username;
+				user.password=req.body.password;
+				user.save(function(err){
+					if(err){
+						if (err.code == 11000)
+							return res.json({ success: false, message: 'A user with that username already exists. '});
+						else				
+							return res.send(err);
+					}		
+						res.json({message:'User Created', success: true});
+				});	
+		});
+
+
 	apiRouter.post('/authenticate',function(req,res){
 
 	// console.log("1");	
@@ -176,7 +198,7 @@ module.exports = function(app,express){
 						else				
 							return res.send(err);
 					}		
-						res.json({message:'Post Created'});
+						res.json({message:'Post Created', success: true});
 				});	
 		})
 		.get(function(req,res){

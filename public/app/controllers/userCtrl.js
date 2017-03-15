@@ -22,6 +22,7 @@ angular.module('userCtrl',['userService'])
 						});
 			};			
 		})
+
 		.controller('userCreateController',function(User){
 			var vm=this;
 
@@ -48,6 +49,27 @@ angular.module('userCtrl',['userService'])
 						vm.userData={};
 						vm.message=data.message;
 					});	
+			};
+		})
+
+		.controller('signupcontroller',function(User, $location){
+			var vm=this;
+
+			vm.type='create';
+			vm.saveUser=function(){
+				console.log("save user function called at controller")
+					User.createNewUser(vm.userData)
+					.success(function(data){					
+						if(data.success){
+							console.log(data.success);
+							$location.path('/login');
+						}							
+						else{
+
+							vm.error=data.message;
+						}
+
+					});
 			};
 		})
 		

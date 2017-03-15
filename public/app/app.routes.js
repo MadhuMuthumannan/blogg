@@ -4,6 +4,7 @@ angular.module('app.routes',['ngRoute'])
 				.when('/',{
 					templateUrl:'app/views/pages/home.html'	
 				})
+
 				.when('/login', {
 					templateUrl : 'app/views/pages/login.html',
 					controller : 'mainController',
@@ -59,8 +60,16 @@ angular.module('app.routes',['ngRoute'])
 					templateUrl : 'app/views/pages/users/single.html',
 					controller : 'userEditController',
 					controllerAs:'user'
+				})
+
+				.when('/register',{
+					templateUrl : 'app/views/pages/users/signup.html',
+					controller : 'signupcontroller',
+					controllerAs: 'sign'
 				});
+
 			$locationProvider.html5Mode(true);	
+
 		});
 
 		

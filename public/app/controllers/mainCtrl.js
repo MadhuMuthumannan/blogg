@@ -1,5 +1,5 @@
-angular.module('mainCtrl',[])
-		.controller('mainController',function($rootScope,$location,Auth){
+angular.module('mainCtrl',['userService'])
+		.controller('mainController',function($rootScope,$location,Auth, User){
 			var vm = this;
 			vm.loggedIn = Auth.isLoggedIn();
 			$rootScope.$on('$routeChangeStart',function(){
@@ -40,8 +40,20 @@ angular.module('mainCtrl',[])
 			vm.doLogout =function(){
 				Auth.logout();
 				vm.user={};
-			vm.isAdmin = false;
+			    vm.isAdmin = false;
 				$location.path('/login');
 			};
-			
-			});
+
+			vm.type='create';
+			vm.saveUser=function(){
+				vm.processing=true;
+				vm.message='';
+
+				User.create(vm.userData)
+					.success(function(data){
+						vm.processing=false;
+						vm.userData={};
+						vm.message=data.message;
+					});	
+			};
+		});

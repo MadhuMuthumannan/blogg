@@ -1,6 +1,6 @@
 angular.module('bpostCtrl',['postService','userService','authService','textAngular','ui.grid','startFilter','ui.bootstrap','ngFileUpload'])
 		
-    	.controller('createController',function(Post, $scope, Upload){
+    	.controller('createController',function(Post, $scope, Upload, $location){
 			var vm=this;
 		      $scope.tagline = "Hello!";
 		      $scope.uploadedFileName = "";
