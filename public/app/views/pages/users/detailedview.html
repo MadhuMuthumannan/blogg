@@ -1,0 +1,113 @@
+<html>
+
+<link rel="stylesheet" href="assets/css/style3.css">
+<link rel="stylesheet" href="bower_components/font-awesome-animation/dist/font-awesome-animation.min.css">
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+        $(function() {
+            $('#activator').click(function(){
+                $('#box').animate({'top':'0px'},500);
+            });
+            $('#boxclose').click(function(){
+            $('#box').animate({'top':'-700px'},500);
+            });
+        });
+        $(document).ready(function(){
+        //Hide (Collapse) the toggle containers on load
+        $(".toggle_container").hide(); 
+        //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+        $(".trigger").click(function(){
+            $(this).toggleClass("active").next().slideToggle("slow");
+                return false; //Prevent the browser jump to the link anchor
+        });
+                            
+    });
+
+        $.ajaxPrefilter(function( options, original_Options, jqXHR ) {
+		    options.async = true;
+		});
+</script>
+
+<body>        
+    </div>
+		</div>
+		<div class="content">
+			<div class="wrap">
+			<div class="single-page">
+							<div class="single-page-artical">
+								<div class="artical-content">                                     
+									<img src="assets/img/latest-post-img1.jpg" title="banner1"> 		  						 
+		  						 <div class="clear"> </div>
+                                   <div class="col-md-offset-8">      
+                                    <span style="text-align: right">Posted by:</span> <span style="color: #71767c; text-align: right">{{posts.author}}</span>&emsp;<span>Posted on:</span> <span style="color: #71767c">{{posts.time | date: yyyy/MM/dd }}</span>                                   
+                                    </div> 
+                                    <div>                         
+									<h3><a href="#">{{posts.title}}</a></h3>
+									<p ng-bind-html="posts.body">{{posts.body}}</p> 
+								    </div>		
+							</div>
+							
+							<div class="comment-section">
+				<div class="grids_of_2">
+					<h2>Recent Comments</h2>
+					<!-- Blog Comments -->
+					<div ng-repeat="comment in posts.comments | orderBy:'comment.date':true | startFrom:currentPage*pageSize | limitTo:pageSize">
+						<div class="grid1_of_2">
+							<div class="grid_img">
+								<a href=""><img src="assets/img/latest-post-img1.jpg" alt=""></a>
+							</div>
+							<div class="grid_text">
+								<span><h4 class="style1 list"><a href="#">{{comment.commentedBy}}</a></h4>
+								<p class="para top">{{comment.date | date:yyyy/mm/dd}}</p></span>
+								<blockquote><p>{{comment.body}}</p></blockquote>						
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div>
+						<button class="btn btn-primary" ng-click="pageSize = 400" ng-show="pageSize < 6">View All comments <i class="fa 	fa-angle-double-down faa-float animated" aria-hidden="true"></i></button>
+					</div>
+					<div>
+						<button class="btn btn-info" ng-click="pageSize = 5" ng-show="pageSize > 5">Recent comments <i class="fa fa-angle-double-up faa-float animated" aria-hidden="true"></i></button>
+					</div>
+					<!-- <div ng-repeat="comment in post.comments | orderBy:'comment.date':true | startFrom:currentPage*pageSize | limitTo:pageSize">
+					    <div class="media">
+					        <a class="pull-left" href="#">
+					            <img class="media-object" src="http://placehold.it/64x64" alt="">
+					        </a>
+					        <div class="media-body">
+					            <h4 class="media-heading">{{comment.commentedBy}}
+					                <small>{{comment.date | date:yyyy/mm/dd}}</small>
+					            </h4>
+					            {{comment.body}}
+					        </div>
+					    </div>
+					    <br />
+					</div> -->
+											
+						<div class="artical-commentbox">
+						 	<h2>Leave a Comment</h2>
+				  			<div class="table-form">
+								<form method="post" name="post_comment" ng-submit="postComment()">									
+									<div>
+										<label>Your Comment<span>*</span></label>
+										<textarea ng-model="comment.body"> </textarea>	
+									</div>								
+								<input type="submit" value="submit">	
+								</form>								
+							</div>
+							<div class="clear"> </div>
+				  		</div>			
+					</div>
+			</div>
+							
+						</div>
+						 </div>
+		</div>
+		
+		<div class="footer">
+			<p>Designed by <a href="https://www.linkedin.com/in/madhu-muthumannan-174581b6/">Madhu</a></p>
+		</div>
+	</body>
+</html>
+

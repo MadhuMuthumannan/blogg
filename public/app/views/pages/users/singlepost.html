@@ -1,0 +1,29 @@
+
+<link rel="stylesheet" href="assets/css/style2.css">
+<div class="wrap">
+	<div class="main">
+		<div class="content">
+			<div class="box1">
+                <div class="row">
+					<span>Post ID: {{posts._id}}</span>
+   				 	<h3><a href="single.html">{{posts.title}}</a></h3>
+    					<span class="blabla">By {{posts.author}} - {{posts.time | date: yyyy/MM/dd }}<span class="comments">8 Comments</span></span> 
+					<div class="view">
+						<div class="view-back">
+							<span class="views" title="views">(85)</span>
+							<span class="likes" title="likes">(58)</span>
+							<span class="link" title="link">(48})</span>
+							<a href="#"> </a>
+						</div>
+						<div class="tiles">
+						<a href="single.html"><img src="assets/img/latest-post-img1.jpg"></a>
+						</div>
+					</div>
+					<div class="data">
+						<p ng-bind-html="posts.body">...</p>
+					</div>
+                </div>
+			</div>
+         </div>
+      </div>
+ </div>

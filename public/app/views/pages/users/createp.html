@@ -1,0 +1,27 @@
+
+<link href="css/style1.css" rel="stylesheet" type="text/css" media="all"/>
+
+<body>
+<div class="wrap">
+<div class="jumbotron text-center">
+    <h1>Create New Post Here</h1>   
+</div>
+<div class="post">
+    <h2>Add New Post</h2>
+
+    <form name="postForm" ng-submit="upload(create.postData.file_name)">
+        <h4>Title</h4>
+        <input type="text" ng-touched ng-pristine ng-invalid ng-invalid-required ng-model="create.postData.title"/>
+        <h4>Body</h4>
+        <text-angular name="htmlcontent" ng-model="create.postData.body"></text-angular>
+        <!-- <label for="">Featured Image URL</label>
+        <input type="text" placeholder="http://placekitten.com/g/2000/600" /> -->
+        <label for="">by:</label>
+        <input type="text" placeholder="Author Name" required ng-model="create.postData.author"/>
+        Single Image with validations
+        <input type = "file" ngf-select name="file_name" id="file_name" ng-model="create.postData.file_name"/>
+        <input type="submit" value="Submit"/>          
+    </form>
+</div>
+</body>    
+</div>

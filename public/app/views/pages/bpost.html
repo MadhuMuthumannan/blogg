@@ -1,0 +1,66 @@
+<!--<link href="css/style2.css" rel="stylesheet" type="text/css" media="all"/>-->
+
+<link rel="stylesheet" href="assets/css/style2.css">
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true">&nbsp;Search by author&nbsp;&nbsp;<i class="fa fa-user fa-4" aria-hidden="true"></i></i></span>
+  <select class="form-control customized" ng-model="selectedName" ng-options="x.username for x in post.users | orderBy: 'username'" ng-change="valueChanged(selectedName)">
+				</select>
+</div>
+<div class="wrap">
+	<div class="main">
+		<div class="content">
+			<div class="box1">
+				<div>
+	                <div class="row box2" ng-repeat="post in filteredPosts">					
+						<!--<span>{{post.author}}</span>	-->
+						<!--<span>Post Status: {{post.status}}</span>-->
+						<div class="breadcrumb">
+						<blockquote>
+						<h3 class="heading" style="color: #b84d45 !important"><a href="/detailed/{{post._id}}" style="background-color: transparent;">{{post.title}}</a></h3></blockquote>
+						</div>
+						<span class="blabla">By {{post.author}} - On {{post.time | date: yyyy/MM/dd }}</span>
+					<div class="view">
+						<div class="view-back">
+							<span style="font-size: 18px;"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;({{post.views}})</span>	
+							
+							<span style="font-size: 18px;"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp;&nbsp;({{post.comments.length}})</span>							
+						</div>
+						<div class="tiles">
+							<a href="/detailed/{{post._id}}"><img src="{{post.file_name}}"></a>
+						</div>						
+					</div>
+					<div class="data">
+						<p ng-bind-html="post.body | limitTo: 250"></p>						
+						<span><a href="/detailed/{{post._id}}" ng-if="post.body.length > 200">View full screen >>></a></span>
+					</div>
+					</div>
+				<hr>					
+                </div>				
+				<!-- <div style="position: absolute">
+					<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-lg btn-primary">
+						<<
+					</button>
+					{{currentPage+1}}/{{numberOfPages()}}
+					<button ng-disabled="currentPage >= post.posts.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-lg btn-primary">
+						>>
+					</button>
+				</div>			 -->
+				<div class="clear"></div>
+				<div class="superClass"></dir><pagination boundary-links="true" 
+				    max-size="5" 
+				    items-per-page="itemsPerPage"
+				    total-items= pageLength
+				    ng-model="currentPage" 
+				    ng-change="pageChanged()"></pagination>
+				 </div>
+			</div>
+		</div>
+		<div class="sidebar">
+			<div class="sidebar_top">
+				&nbsp;
+			<div class="sidebar_top_list">
+			&nbsp;
+		</div>
+	</div>        
+	<div class="clear"></div></div>	
+</div>

@@ -1,0 +1,20 @@
+{
+  "name": "meanfullstack2",
+  "description": "mean full stack description",
+  "main": "server.js",
+  "authors": [
+    "madhu"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "bowercomponents"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,252 @@
+main {
+	padding-top:10px;
+}
+
+header .navbar{
+	border-radius:0;
+}
+
+.spinner{
+	animation:spin 1s infinite;
+	-webkit-animation:spin 1s infinite;
+	-moz-animation:spin 1s infinite;
+}
+
+@keyframes spin{
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+@-webkit-keyframes spin{
+	from{-webkit-transform:rotate(0deg);}
+	to{-webkit-transform:rotate(360deg);}
+}
+
+@-moz-keyframes spin{
+	from{-moz-transform:rotate(0deg);}
+	to{-moz-transform:rotate(360deg);}
+}
+
+.show-hide-message.ng-hide-remove{
+	animation:zoomIn 0.3s both ease;
+	-webkit-animation:zoomIn 0.3s both ease;
+	-moz-animation:zoomIn 0.3s both ease;
+}
+
+
+.faa-bounce {
+  -webkit-animation: bounce 2s ease infinite;
+  animation: bounce 2s ease infinite;
+}
+
+/* BOUNCE */
+
+@-webkit-keyframes bounce {
+  0%, 10%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  60% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes bounce {
+  0%, 10%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  60% {
+    -webkit-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+
+
+.container 
+{
+    width: 90%;
+}
+
+.wrap 
+{
+    width: 80%;
+    margin:0 auto;
+}
+
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav-right li {float: right;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ul.topnav li a:hover {background-color: #555;}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+/* BackToTop button css */
+#scroll {
+    position:fixed;
+    right:10px;
+    bottom:10px;
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    background-color:#3498db;
+    text-indent:-9999px;
+    display:none;
+    -webkit-border-radius:60px;
+    -moz-border-radius:60px;
+    border-radius:60px
+}
+#scroll span {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-8px;
+    margin-top:-12px;
+    height:0;
+    width:0;
+    border:8px solid transparent;
+    border-bottom-color:#ffffff
+}
+#scroll:hover {
+    background-color:#e74c3c;
+    opacity:1;filter:"alpha(opacity=100)";
+    -ms-filter:"alpha(opacity=100)";
+}
+
+
+.spinner{
+	animation:spin 1s infinite;
+	-webkit-animation:spin 1s infinite;
+	-moz-animation:spin 1s infinite;
+}
+
+@keyframes spin{
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+@-webkit-keyframes spin{
+	from{-webkit-transform:rotate(0deg);}
+	to{-webkit-transform:rotate(360deg);}
+}
+
+@-moz-keyframes spin{
+	from{-moz-transform:rotate(0deg);}
+	to{-moz-transform:rotate(360deg);}
+}
+
+.show-hide-message.ng-hide-remove{
+	animation:zoomIn 0.3s both ease;
+	-webkit-animation:zoomIn 0.3s both ease;
+	-moz-animation:zoomIn 0.3s both ease;
+}
+/* BackToTop button css */
+#scroll {
+	position:fixed;
+	right:10px;
+	bottom:10px;
+	cursor:pointer;
+	width:50px;
+	height:50px;
+	background-color:#3498db;
+	text-indent:-9999px;
+	display:none;
+	-webkit-border-radius:60px;
+	-moz-border-radius:60px;
+	border-radius:60px
+}
+#scroll span {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-8px;
+	margin-top:-12px;
+	height:0;
+	width:0;
+	border:8px solid transparent;
+	border-bottom-color:#ffffff
+}
+#scroll:hover {
+	background-color:#e74c3c;
+	opacity:1;filter:"alpha(opacity=100)";
+	-ms-filter:"alpha(opacity=100)";
+}
+
+.grid{
+  height: 550px;
+}
+
+.customFont{
+  font-weight: bold;
+  vertical-align: center
+}
+
+.btn-baba{
+
+    padding: 5px 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    width:30%;    /* Specify your width here*/
+
+}

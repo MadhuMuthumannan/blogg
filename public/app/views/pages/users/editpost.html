@@ -1,0 +1,22 @@
+<link href="css/style1.css" rel="stylesheet" type="text/css" media="all"/>
+
+<body>
+<div class="wrap">
+<div class="jumbotron text-center">
+    <h1>Edit Your Post Here</h1>    
+</div>
+<div class="post">
+    <h2>Add New Post</h2>
+    <form name="postForm" ng-submit="upload()">
+        <h4>Title</h4>
+        <input type="text" ng-model="posts.title"/>
+        <h4>Body</h4>
+        <text-angular ng-model="posts.body"></text-angular>        
+        <label for="">by:</label>
+        <input type="text" placeholder="Author Name" required ng-model="posts.author"/>
+        <input type = "file" ngf-select name="file_name" id="file_name" ng-model="edit.postData.file_name"/>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+</body>
+</div>

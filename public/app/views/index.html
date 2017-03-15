@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Aurum Blog</title>	
+		<base href="/">
+		      
+			    
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="assets/css/style1.css">	
+		<link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css">
+		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+		<link rel="stylesheet" href="bower_components/font-awesome-animation/dist/font-awesome-animation.min.css">	
+
+
+		<!-- <script src="ng-file-upload-shim.min.js"></script> 
+		<script src="ng-file-upload.min.js"></script>		 -->
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-animate.min.js"></script>
+		<script src="bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+		<script src="bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+		<script src="bower_components/textAngular/dist/textAngular.min.js"></script>
+		<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+		<script data-require="ui-bootstrap@*" data-semver="0.12.1" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+
+		<script src="assets/js/ng-file-upload.min.js"></script>
+        <script src="assets/js/ng-file-upload-shim.min.js"></script>
+        
+		<!--controllers -->
+		<script src="app/controllers/mainCtrl.js"></script>
+		<script src="app/controllers/bpostCtrl.js"></script>
+		<script src="app/controllers/userCtrl.js"></script>
+
+
+		<!--services -->
+		<script src="app/services/authService.js"></script>
+		<script src="app/services/userService.js"></script>
+		<script src="app/services/postService.js"></script>
+
+		<!-- filters-->
+		<script src="app/filters/filter1.js"></script>
+
+		<!--angular app files -->
+		<script src="app/app.routes.js"></script>
+		<script src="app/app.js"></script>
+		<script>
+			function myFunction() {
+				var x = document.getElementById("myTopnav");
+				if (x.className === "topnav") {
+					x.className += " responsive";
+				} else {
+					x.className = "topnav";
+				}
+			}
+
+			$(document).ready(function(){ 
+				$(window).scroll(function(){ 
+					if ($(this).scrollTop() > 100) { 
+						$('#scroll').fadeIn(); 
+					} else { 
+						$('#scroll').fadeOut(); 
+					} 
+				}); 
+				$('#scroll').click(function(){ 
+					$("html, body").animate({ scrollTop: 0 }, 600); 
+					return false; 
+				}); 
+			});
+		</script>
+		
+	</head>
+	
+	<body ng-app="sampleApp" ng-controller="mainController as main">
+		<div  class="container" ng-show="main.loggedIn">
+			<nav class="navbar navbar-inverse">
+			<ul class="topnav" id="myTopnav">
+            <li><a href="/">Home</a></li>            
+            <li><a href="/bpost">Posts</a></li>            
+            <li><a href="/users/createpost">Create Post</a></li>
+            <li><a href="/users/manageposts">Manage Posts</a></li>
+			<li><a href="/users" ng-if="main.isAdmin">Users</a></li>
+			<li><a href="/users/create" ng-if="main.isAdmin">Create User</a></li>
+			<ul class="topnav-right">
+				<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+				<li ng-if="main.loggedIn"><a>Hello {{main.user.username}} !</a><</li>	
+				<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+			</ul>
+            <li class="icon">
+                <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+            </li>
+        </ul>
+		</div>			
+			<main class="container">
+				<div ng-view></div>
+				<span class="faa-bounce">
+				<a href="javascript:void(0);" id="scroll" title="Scroll to Top">Top<span></span></a>
+				</span>
+			</main>			
+	</body>
+</html>
