@@ -175,7 +175,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 			})
 
 
-	    .controller('postEditController',function($scope,$routeParams,Post, Upload){	
+	    .controller('postEditController',function($scope,$routeParams,Post, Upload, $location){	
 			var vm=this;	
 			$scope.posts={};
 			$scope.type='edit';
@@ -189,8 +189,14 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 						console.log('save post function called');					
 					Post.update($routeParams.post_id,$scope.posts)
 						.success(function(data){							
-							$scope.message = data.message;							
-						});
+							$scope.message = data.message;
+							console.log("blaaaaaa")	;
+							console.log(data);
+							if(data.success)
+										$location.path('/bpost');
+									else
+										vm.error=data.message;
+						});	
 					}
 
 

@@ -236,7 +236,7 @@ module.exports = function(app,express){
 
 				Post.save(function(err){
 					if(err) res.send(err);
-					res.json({message:'Post Updated'});
+					res.json({message:'Post Updated',success: true});
 				});
 			});
 		});
@@ -322,7 +322,7 @@ module.exports = function(app,express){
 				if(req.body.file_name) post.file_name=req.body.file_name;
 				post.save(function(err){
 					if(err) res.send(err);
-					res.json({message:'post Updated'});
+					res.json({message:'post Updated', success: true});
 				});
 			});
 		})
