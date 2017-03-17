@@ -37,8 +37,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 
 	                	vm.postData.uploadedFileName = 'uploads/' + resp.data.filename;
 	                	vm.savePost();
-	                	// console.log(resp.data.filename);
-	                	console.log($scope.uploadedFileName);	                	
+	                	console.log(resp.data.filename);	                	
 	                    // console.log('Success ' + resp.data.filename + ' uploaded. Response: ');
 	                } else {
 	                    console.log('an error occured');
@@ -195,7 +194,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 					}
 
 
-					});
+			});
 
 			$scope.upload = function(file_name) {
 				console.log(file_name);
@@ -227,7 +226,6 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 		                $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
 		            });
 	            }
-
 		            else{
 		            	$scope.posts.file_name = "uploads/no_image.jpg";
 		            	vm.savePost();

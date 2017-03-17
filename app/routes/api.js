@@ -12,7 +12,21 @@ module.exports = function(app,express){
 	var apiRouter = express.Router();
 	/*var sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/empod_db');*/
 	//route for authenticating users
+	var storage = multer.diskStorage({ //multers disk storage settings
+	    destination: function (req, file, cb) {
+	        cb(null, './public/uploads/')
+	    },
+	    filename: function (req, file, cb) {
+	    	console.log("Ddaaaaaaaaaa")
+	        var datetimestamp = Date.now();
+	        cb(null, datetimestamp + '.' + file.originalname)
+	    }
+	});
 
+
+	var upload = multer({ //multer settings
+	    storage: storage
+	}).single('file');
 
 	apiRouter.post('/userss',function(req,res){
 				console.log(req.body)
@@ -349,21 +363,7 @@ module.exports = function(app,express){
 		console.log(req.decoded);	
 	});
 
-	var storage = multer.diskStorage({ //multers disk storage settings
-	    destination: function (req, file, cb) {
-	        cb(null, './public/uploads/')
-	    },
-	    filename: function (req, file, cb) {
-	    	console.log("Ddaaaaaaaaaa")
-	        var datetimestamp = Date.now();
-	        cb(null, datetimestamp + '.' + file.originalname)
-	    }
-	});
-
-
-	var upload = multer({ //multer settings
-	    storage: storage
-	}).single('file');
+	
 
 	/** API path that will upload the files */
 	apiRouter.post('/upload', function(req, res) {
