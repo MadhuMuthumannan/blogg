@@ -25,6 +25,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 					}
 
 		      $scope.upload = function (file_name) {
+		      	console.log(file_name);
 		      	console.log("upload function called at controller part");
 		      	if(file_name) {
 		      		console.log("inside upload part to service");

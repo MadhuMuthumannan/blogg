@@ -355,7 +355,6 @@ module.exports = function(app,express){
 	    },
 	    filename: function (req, file, cb) {
 	    	console.log("Ddaaaaaaaaaa")
-	    	console.log(file)
 	        var datetimestamp = Date.now();
 	        cb(null, datetimestamp + '.' + file.originalname)
 	    }
@@ -369,8 +368,9 @@ module.exports = function(app,express){
 	/** API path that will upload the files */
 	apiRouter.post('/upload', function(req, res) {
 		console.log("upload api called")
-		console.log(req.file);
-	    upload(req,res,function(err){	    
+	    upload(req,res,function(err){
+	    console.log("----------->>");
+	    console.log(req.file.filename);
 	        if(err){
 	             res.json({error_code:1,err_desc:err});
 	             return;
