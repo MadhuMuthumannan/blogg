@@ -25,9 +25,9 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 					}
 
 		      $scope.upload = function (file_name) {
-
+		      	console.log("upload function called at controller part");
 		      	if(file_name) {
-
+		      		console.log("inside upload part to service");
 		      		Upload.upload({
                     url: 'api/upload', //webAPI exposed to upload the file
                     data:{file:file_name} //pass file as data, should be user ng-model

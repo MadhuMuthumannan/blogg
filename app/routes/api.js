@@ -369,6 +369,7 @@ module.exports = function(app,express){
 	/** API path that will upload the files */
 	apiRouter.post('/upload', function(req, res) {
 		console.log("upload api called")
+		console.log(req.file);
 	    upload(req,res,function(err){	    
 	        if(err){
 	             res.json({error_code:1,err_desc:err});
