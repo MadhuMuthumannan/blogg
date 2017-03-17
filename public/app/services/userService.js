@@ -13,10 +13,10 @@ angular.module('userService',[])
 				return $http.get('/api/users');
 			};	
 
-			// //api/users/
-			// userFactory.create=function(userData){
-			// 	return $http.post('/api/users/',userData);
-			// };
+			//api/users/
+			userFactory.create=function(userData){
+				return $http.post('/api/users/',userData);
+			};
 
 			//api/users/
 			userFactory.createNewUser=function(userData){
