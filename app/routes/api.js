@@ -86,7 +86,7 @@ module.exports = function(app,express){
 
 					res.json({
 						success: true,
-						message: 'Good Luck with your token !',
+						message: 'Good Luck!',
 						token:token
 					});
 				}
