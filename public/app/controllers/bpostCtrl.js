@@ -1,10 +1,11 @@
 angular.module('bpostCtrl',['postService','userService','authService','textAngular','ui.grid','startFilter','ui.bootstrap','ngFileUpload'])
 		
-    	.controller('createController',function(Post, $scope, Upload, $location){
+    	.controller('createController',function(Post, $scope, Upload, $location,$rootScope){
+    		$rootScope.pageLoading = false;
 			var vm=this;
 		      $scope.uploadedFileName = "";
 
-		      vm.savePost=function(){	
+		      	vm.savePost=function(){	
 							console.log("save post function called");
 							vm.processing=true;
 							vm.message='';
@@ -15,8 +16,10 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 									vm.postData={};
 									vm.message=data.message;
 									
-			                       if(data.success)
+			                       if(data.success){
+			                       		
 										$location.path('/bpost');
+			                       }
 									else
 										vm.error=data.message;
 
@@ -62,12 +65,17 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 		})
 
 		 
-		.controller('indPostsController',function($scope,$routeParams,Post, Auth){		
+		.controller('indPostsController',function($scope,$routeParams,Post, Auth,$rootScope){		
 			$scope.posts={};
 			$scope.comment={};
 			$scope.posts.comments = {};
 			$scope.currentPage = 0;
 			$scope.pageSize = 5;
+
+			$rootScope.$on('$routeChangeStart',function(){				
+					$rootScope.pageLoading = true;
+				  }); 
+
 			$scope.numberOfPages=function(){
 				return Math.ceil($scope.post.comments.length/$scope.pageSize);                
 			}
@@ -83,6 +91,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 						$scope.posts=data;
 						Post.IncreaseViews($routeParams.post_id)
 						.success(function(data){
+							$rootScope.pageLoading = false;
 							console.log('views incremented')
 						});
 					});
@@ -101,22 +110,15 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 
 	     })
          
-		.controller('bpostController',function($scope, Post){
+		.controller('bpostController',function($scope, Post,$rootScope){
 			$scope.filteredTodos = [];
 			$scope.itemsPerPage = 3;
 			$scope.currentPage = 1;
 				var vm=this;
 
-				 // $scope.twoDigit = function(){
-				 // 	if (post.views.toString().length == 1) {
-			  //           post.views = "0" + post.views;
-			  //       }
-
-			  //       if (post.comments.length.toString().length == 1) {
-			  //           post.comments.length = "0" + post.comments.length;
-			  //       }
-				 // }
-				 // $scope.twoDigit();
+				 $rootScope.$on('$routeChangeStart',function(){				
+					$rootScope.pageLoading = true;
+				  }); 
 
 
 				$scope.valueChanged = function(selectedName){	
@@ -124,6 +126,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 						Post.getUserPosts(selectedName.username)
 						.success(function(data){
 							// console.log(data)
+							$rootScope.pageLoading = false;
 							vm.posts=data;
 							 $scope.pageChanged();
 						});
@@ -143,7 +146,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 						vm.posts=data;
 						$scope.itemsPerPage = 3;
 						$scope.currentPage = 1;
-
+						$rootScope.pageLoading = false;
 						$scope.pageChanged = function() {						
 							
 						    var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -154,34 +157,39 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 						  };
 
 						 $scope.pageChanged();
-						// $scope.currentPage = 0;
-						// $scope.pageSize = 3;
-						// $scope.numberOfPages=function(){
-						// 	return Math.ceil(vm.posts.length/$scope.pageSize);                
-						// }						
 					});
 
 
 		})
 
 
-		.controller('getAllPostsController',function($scope,Post){		
+		.controller('getAllPostsController',function($scope,Post,$rootScope){	
+		$rootScope.$on('$routeChangeStart',function(){				
+					$rootScope.pageLoading = true;
+				  }); 	
 				$scope.posts={};
 				$scope.post=0;
 				Post.getAll()
-					.success(function(posts){						
+					.success(function(posts){	
+						$rootScope.pageLoading = false;					
 						$scope.posts = posts;
 					});
 			})
 
 
-	    .controller('postEditController',function($scope,$routeParams,Post, Upload, $location){	
+	    .controller('postEditController',function($scope,$routeParams,Post, Upload, $location,$rootScope){	
 			var vm=this;	
 			$scope.posts={};
 			$scope.type='edit';
 			$scope.uploadedFileName = "";
+
+			$rootScope.$on('$routeChangeStart',function(){				
+					$rootScope.pageLoading = true;
+				  }); 
+
 			Post.getPost($routeParams.post_id)
 					.success(function(data){
+						$rootScope.pageLoading = false;
 						$scope.posts=data;
 						console.log($scope.posts);
 
@@ -192,10 +200,12 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 							$scope.message = data.message;
 							console.log("blaaaaaa")	;
 							console.log(data);
-							if(data.success)
-										$location.path('/bpost');
-									else
-										vm.error=data.message;
+								if(data.success){
+									$rootScope.pageLoading = false;
+									$location.path('/bpost');
+								}		
+								else
+									vm.error=data.message;
 						});	
 					}
 
@@ -243,10 +253,16 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 
 		})
 
-	    .controller('managePostController',function($scope,Post,Auth,uiGridConstants){
+	    .controller('managePostController',function($scope,Post,Auth,uiGridConstants,$rootScope){
 			var vm=this;
 			vm.posts={};
 			vm.processing=true;	
+
+			$rootScope.$on('$routeChangeStart',function(){				
+					$rootScope.pageLoading = true;
+				  }); 
+
+
 
 			$scope.toggleFiltering = function(){
 						$scope.gridOptions.enableFiltering = !$scope.gridOptions.enableFiltering;
@@ -318,6 +334,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 										$scope.isAdmin=true;
 											Post.allPosts()
 												.success(function(data){
+													$rootScope.pageLoading = false;
 												$scope.posts = data;
 												getRequiredDetails();
 												$scope.gridOptions.data=$scope.postDetails;
@@ -328,6 +345,7 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 										Post.getUserPosts($scope.username)
 										.success(function(data){
 											console.log(data)
+											$rootScope.pageLoading = false;
 											$scope.posts=data;
 											getRequiredDetails();
 											$scope.gridOptions.data=$scope.postDetails;

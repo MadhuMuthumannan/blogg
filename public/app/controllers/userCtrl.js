@@ -1,5 +1,7 @@
 angular.module('userCtrl',['userService'])
-		.controller('userController',function(User){
+		.controller('userController',function(User,$rootScope){
+			console.log("userController called");
+			$rootScope.pageLoading = false;
 			var vm=this;
 			vm.processing=true;
 
@@ -23,7 +25,9 @@ angular.module('userCtrl',['userService'])
 			};			
 		})
 
-		.controller('userCreateController',function(User){
+		.controller('userCreateController',function(User,$rootScope){
+			console.log("userController called");
+			$rootScope.pageLoading = false;
 			var vm=this;
 
 			vm.type='create';
@@ -33,6 +37,7 @@ angular.module('userCtrl',['userService'])
 
 				User.create(vm.userData)
 					.success(function(data){
+						$rootScope.pageLoading = false;
 						vm.processing=false;
 						vm.userData={};
 						vm.message=data.message;
@@ -45,6 +50,7 @@ angular.module('userCtrl',['userService'])
 
 				User.create(vm.userData)
 					.success(function(data){
+						$rootScope.pageLoading = false;
 						vm.processing=false;
 						vm.userData={};
 						vm.message=data.message;
@@ -52,7 +58,7 @@ angular.module('userCtrl',['userService'])
 			};
 		})
 
-		.controller('signupcontroller',function(User, $location){
+		.controller('signupcontroller',function(User, $location,$rootScope){
 			var vm=this;
 
 			vm.type='create';
@@ -61,6 +67,7 @@ angular.module('userCtrl',['userService'])
 					User.createNewUser(vm.userData)
 					.success(function(data){					
 						if(data.success){
+							$rootScope.pageLoading = false;
 							console.log(data.success);
 							$location.path('/login');
 						}							
@@ -74,7 +81,8 @@ angular.module('userCtrl',['userService'])
 		})
 		
 		
-		.controller('userEditController',function($routeParams,User){
+		.controller('userEditController',function($routeParams,User,$rootScope){
+			$rootScope.pageLoading = false;
 			var vm=this;
 			vm.type='edit';
 

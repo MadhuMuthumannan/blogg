@@ -1,6 +1,8 @@
 <!--<link href="css/style2.css" rel="stylesheet" type="text/css" media="all"/>-->
 
 <link rel="stylesheet" href="assets/css/style2.css">
+
+
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true">&nbsp;Search by author&nbsp;&nbsp;<i class="fa fa-user fa-4" aria-hidden="true"></i></i></span>
   <select class="form-control customized" ng-model="selectedName" ng-options="x.username for x in post.users | orderBy: 'username'" ng-change="valueChanged(selectedName)">

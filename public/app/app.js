@@ -13,3 +13,5 @@ angular.module('sampleApp',['ngAnimate','ngRoute','app.routes','authService','ma
 		.config(function($httpProvider){
 			$httpProvider.interceptors.push('AuthInterceptor');	
 		});
+
+		

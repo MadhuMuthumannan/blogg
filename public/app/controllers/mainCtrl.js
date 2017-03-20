@@ -4,6 +4,8 @@ angular.module('mainCtrl',['userService'])
 			vm.loggedIn = Auth.isLoggedIn();
 			$rootScope.$on('$routeChangeStart',function(){
 				vm.loggedIn= Auth.isLoggedIn();
+				$rootScope.pageLoading = false;
+
 
 				Auth.getUser()
 					.then(function(data){
@@ -27,8 +29,9 @@ angular.module('mainCtrl',['userService'])
 						vm.processing=false;
 						if(data.success)
 						{
-							// console.log(data);
+							$rootScope.pageLoading = false;
 							$location.path('/bpost');
+
 						}							
 						else
 							vm.error=data.message;	
@@ -56,4 +59,8 @@ angular.module('mainCtrl',['userService'])
 						vm.message=data.message;
 					});	
 			};
+		})
+
+		.controller('homeController',function($rootScope,$location,Auth, User){
+			$rootScope.pageLoading = false;
 		});

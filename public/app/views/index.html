@@ -26,6 +26,7 @@
 		<script src="bower_components/textAngular/dist/textAngular.min.js"></script>
 		<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
 		<script data-require="ui-bootstrap@*" data-semver="0.12.1" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 
 		<script src="assets/js/ng-file-upload.min.js"></script>
         <script src="assets/js/ng-file-upload-shim.min.js"></script>
@@ -74,11 +75,11 @@
 		
 	</head>
 	
-	<body ng-app="sampleApp" ng-controller="mainController as main">
+	<body ng-app="sampleApp" ng-controller="mainController as main">		
 		<div  class="container" ng-show="main.loggedIn">
 			<nav class="navbar navbar-inverse">
 			<ul class="topnav" id="myTopnav">
-            <li><a href="/">HOME</a></li>            
+            <li><a href="/">Home</a></li>            
             <li><a href="/bpost">Posts</a></li>            
             <li><a href="/users/createpost">Create Post</a></li>
             <li><a href="/users/manageposts">Manage Posts</a></li>
@@ -87,7 +88,7 @@
 			<ul class="topnav-right">
 				<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
 				<li ng-if="main.loggedIn"><a>Hello {{main.user.username}} !</a><</li>	
-				<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+				<li ng-if="main.loggedIn"><a href="/" ng-click="main.doLogout()">Logout</a></li>
 			</ul>
             <li class="icon">
                 <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
@@ -95,7 +96,9 @@
         </ul>
 		</div>			
 			<main class="container">
-				<div ng-view></div>
+				<div ng-show="pageLoading"><img src="assets/img/Preloader_3.gif" 
+				style="position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; margin: -100px 0 0 -100px;"></div>
+				<div ng-show="!pageLoading"><div ng-view></div></div>
 				<span class="faa-bounce">
 				<a href="javascript:void(0);" id="scroll" title="Scroll to Top">Top<span></span></a>
 				</span>
