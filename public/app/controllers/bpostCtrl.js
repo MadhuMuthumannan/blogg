@@ -243,7 +243,6 @@ angular.module('bpostCtrl',['postService','userService','authService','textAngul
 		            });
 	            }
 		            else{
-		            	$scope.posts.file_name = "uploads/no_image.jpg";
 		            	vm.savePost();
 		            }
 		        };				
