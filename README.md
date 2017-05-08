@@ -12,6 +12,15 @@ then run the following command:
 1. nodemon (to automatically restart the server when changes are made in code)
 1. robomongo (optional: to view databases and collections in UI)
 
+
+Import the databases from the .bson files included in the blog-dump folder using the command:
+It's very simple to import a .bson file:
+
+mongorestore -d db_name -c collection_name path/file.bson
+Incase only for a single collection.Try this:
+
+mongorestore --drop -d db_name -c collection_name path/file.bson
+
 ### Getting into project
 
 To install dependencies cd to the project directory here say blogg folder where package.json is present and run the following command:
